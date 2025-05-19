@@ -1,9 +1,9 @@
 import graphene
 from passlib.context import CryptContext
 
-from my_graphql.types.user import UserType
+from user.graphql.user_type import UserType
 
-from my_graphql.inputs.create_user import CreateUserInput
+from user.graphql.user_inputs import CreateUserInput
 
 from user.models import User
 
@@ -28,5 +28,5 @@ class CreateUserMutation(graphene.Mutation):
         return CreateUserMutation(user=user)
 
 
-class UserMutation(graphene.ObjectType):
+class UserMutations(graphene.ObjectType):
     create_user = CreateUserMutation.Field()

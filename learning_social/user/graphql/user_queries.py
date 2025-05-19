@@ -1,8 +1,8 @@
 import graphene
 
-from my_graphql.types.user import UserType
+from user.graphql.user_type import UserType
 
-from user.models import User
+from ..models import User
 
 
 class UserQuery(graphene.ObjectType):

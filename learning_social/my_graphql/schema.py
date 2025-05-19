@@ -1,13 +1,13 @@
 import graphene
 
-from my_graphql.queries.learning_space_query import LearningSpaceQuery
-from my_graphql.queries.user_query import UserQuery
-
 from my_graphql.mutations.learning_space import LearningSpaceMutation
-from my_graphql.mutations.user import UserMutation
+from my_graphql.queries.learning_space_query import LearningSpaceQuery
+
+from user.graphql.user_queries import UserQuery
+from user.graphql.user_mutations import UserMutations
 
 
-class Mutation(UserMutation, LearningSpaceMutation, graphene.ObjectType):
+class Mutation(UserMutations, LearningSpaceMutation, graphene.ObjectType):
     pass
 
 
