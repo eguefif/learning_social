@@ -26,6 +26,19 @@ class CreateLearningSpaceMutation(graphene.Mutation):
         return CreateLearningSpaceMutation(learning_space=learning_space)
 
 
+class DeleteLearningSpaceMutationById(graphene.Mutation):
+    class Arguments:
+        id = graphene.Int(required=True)
+
+    learning_space = graphene.Field(LearningSpaceType)
+
+    @classmethod
+    def mutate(cls, root, info, id):
+        learning_space = LearningSpace.objects.get(id=id)
+        learning_space.delete()
+        return DeleteLearningSpaceMutationById(learning_space=learning_space)
+
+
 class UserType(DjangoObjectType):
     class Meta:
         model = User
@@ -34,6 +47,7 @@ class UserType(DjangoObjectType):
 
 class Mutation(graphene.ObjectType):
     create_learning_space = CreateLearningSpaceMutation.Field()
+    delete_learning_space_by_id = DeleteLearningSpaceMutationById.Field()
 
 
 class Query(graphene.ObjectType):
