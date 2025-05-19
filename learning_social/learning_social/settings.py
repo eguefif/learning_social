@@ -29,7 +29,7 @@ DEBUG = "DEBUG" in os.environ
 
 ALLOWED_HOSTS = []
 
-GRAPHENE = {"SCHEMA": "learning_social.schema.schema"}
+GRAPHENE = {"SCHEMA": "my_graphql.schema.schema"}
 
 # Application definition
 
