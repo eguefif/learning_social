@@ -4,7 +4,7 @@ from learning_space.models import LearningSpace
 from user.models import User
 
 
-from my_graphql.types.learning_space import LearningSpaceType
+from learning_space.graphql.learning_space_type import LearningSpaceType
 
 
 class CreateLearningSpaceMutation(graphene.Mutation):
