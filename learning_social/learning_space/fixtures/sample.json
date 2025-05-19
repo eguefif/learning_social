@@ -1,0 +1,18 @@
+[
+    {
+        "model": "learning_space.learningspace",
+        "fields": {
+            "name": "Hello learning space",
+            "description": "A hello world learning space to make manual tests",
+            "user": 1
+        }
+    },
+    {
+        "model": "learning_space.learningspace",
+        "fields": {
+            "name": "Learning Ghidra",
+            "description": "How to use Ghidra, a NSA reverse engineering tool.",
+            "user": 1
+        }
+    }
+]

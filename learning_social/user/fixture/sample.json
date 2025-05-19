@@ -1,0 +1,39 @@
+[
+    {
+        "model": "user.user",
+        "fields": {
+            "username": "eguefif",
+            "first_name": "Emmanuel",
+            "last_name": "Guefif",
+            "email": "eguefif@gmail.com"
+        }
+    },
+    {
+        "model": "user.user",
+        "fields": {
+            "username": "admin",
+            "first_name": "Emmanuel",
+            "last_name": "Guefif",
+            "is_superuser": true,
+            "email": "admin@ls.com"
+        }
+    },
+    {
+        "model": "user.user",
+        "fields": {
+            "username": "roger",
+            "first_name": "Roger",
+            "last_name": "Bernard",
+            "email": "rogerb@gmail.com"
+        }
+    },
+    {
+        "model": "user.user",
+        "fields": {
+            "username": "dolores",
+            "first_name": "Dolores",
+            "last_name": "Guefif",
+            "email": "doloresg@gmail.com"
+        }
+    }
+]
