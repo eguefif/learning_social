@@ -17,12 +17,12 @@ class CreateUserMutation(graphene.Mutation):
     @classmethod
     def mutate(cls, root, info, user_data):
         pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-        hash_password = pwd_context.hash(user_data["password"])
+        hash_password = pwd_context.hash(user_data.password)
         user = User(
-            username=user_data["username"],
+            username=user_data.username,
             password=hash_password,
-            first_name=user_data["first_name"],
-            last_name=user_data["last_name"],
+            first_name=user_data.first_name,
+            last_name=user_data.last_name,
         )
         user.save()
         return CreateUserMutation(user=user)
