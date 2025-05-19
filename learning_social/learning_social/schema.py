@@ -8,13 +8,32 @@ from learning_space.models import LearningSpace
 class LearningSpaceType(DjangoObjectType):
     class Meta:
         model = LearningSpace
-        fields = ("id", "name", "description", "author")
+        fields = ("id", "name", "description", "user")
+
+
+class CreateLearningSpaceMutation(graphene.Mutation):
+    class Arguments:
+        name = graphene.String(required=True)
+        description = graphene.String(required=True)
+
+    learning_space = graphene.Field(LearningSpaceType)
+
+    @classmethod
+    def mutate(cls, root, info, name, description):
+        user = User.objects.get(id=1)
+        learning_space = LearningSpace(name=name, description=description, user=user)
+        learning_space.save()
+        return CreateLearningSpaceMutation(learning_space=learning_space)
 
 
 class UserType(DjangoObjectType):
     class Meta:
         model = User
         fields = ("id", "username")
+
+
+class Mutation(graphene.ObjectType):
+    create_learning_space = CreateLearningSpaceMutation.Field()
 
 
 class Query(graphene.ObjectType):
@@ -33,4 +52,4 @@ class Query(graphene.ObjectType):
             return None
 
 
-schema = graphene.Schema(query=Query)
+schema = graphene.Schema(query=Query, mutation=Mutation)
