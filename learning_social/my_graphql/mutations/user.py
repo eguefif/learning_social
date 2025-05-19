@@ -7,12 +7,6 @@ from my_graphql.inputs.create_user import CreateUserInput
 
 from user.models import User
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
-
-def get_password_hash(password):
-    return pwd_context.hash(password)
-
 
 class CreateUserMutation(graphene.Mutation):
     class Arguments:
@@ -22,7 +16,8 @@ class CreateUserMutation(graphene.Mutation):
 
     @classmethod
     def mutate(cls, root, info, user_data):
-        hash_password = get_password_hash(user_data["password"])
+        pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+        hash_password = pwd_context.hash(user_data["password"])
         user = User(
             username=user_data["username"],
             password=hash_password,
@@ -31,3 +26,7 @@ class CreateUserMutation(graphene.Mutation):
         )
         user.save()
         return CreateUserMutation(user=user)
+
+
+class UserMutation(graphene.ObjectType):
+    create_user = CreateUserMutation.Field()

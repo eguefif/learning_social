@@ -33,3 +33,8 @@ class DeleteLearningSpaceMutationById(graphene.Mutation):
         learning_space = LearningSpace.objects.get(id=id)
         learning_space.delete()
         return DeleteLearningSpaceMutationById(learning_space=learning_space)
+
+
+class LearningSpaceMutation(graphene.ObjectType):
+    create_learning_space = CreateLearningSpaceMutation.Field()
+    delete_learning_space_by_id = DeleteLearningSpaceMutationById.Field()
