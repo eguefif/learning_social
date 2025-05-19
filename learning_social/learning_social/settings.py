@@ -29,12 +29,14 @@ DEBUG = "DEBUG" in os.environ
 
 ALLOWED_HOSTS = []
 
+GRAPHENE = {"SCHEMA": "learning_social.schema.schema"}
 
 # Application definition
 
 INSTALLED_APPS = [
     "user.apps.UserConfig",
     "learning_space.apps.LearningSpaceConfig",
+    "graphene_django",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
