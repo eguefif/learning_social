@@ -1,5 +1,4 @@
 import graphene
-from passlib.context import CryptContext
 
 from user.graphql.user_type import UserType
 
@@ -16,14 +15,13 @@ class CreateUserMutation(graphene.Mutation):
 
     @classmethod
     def mutate(cls, root, info, user_data):
-        pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-        hash_password = pwd_context.hash(user_data.password)
         user = User(
             username=user_data.username,
-            password=hash_password,
+            password="",
             first_name=user_data.first_name,
             last_name=user_data.last_name,
         )
+        user.set_password(user_data.password)
         user.save()
         return CreateUserMutation(user=user)
 
